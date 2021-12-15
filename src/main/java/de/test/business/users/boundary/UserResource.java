@@ -21,7 +21,7 @@ public class UserResource {
     @PermitAll
     @Path("/v1/users/")
     public Response getUsers() {
-        return Response.ok().build();
+        return Response.ok(System.currentTimeMillis()).build();
     }
 
     @GET
