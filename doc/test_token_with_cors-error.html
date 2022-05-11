@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Payara - Example</title>
+
+</head>
+<body style="background-color: #404446">
+    <div style="display: flex; align-items: center; justify-content: center; height: calc(100vh - 37px)">
+        <div>
+            Payara-Reproducer-Example
+        </div>
+        <div>
+            <button value="Send Request" onclick="sendRequestWithExpiredToken()">Send Request with expired token</button>
+        </div>
+    </div>
+
+    <script>
+
+        function sendRequestWithExpiredToken() {
+            console.log("Starting AJAX-request")
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.onload = () => {
+                console.log("PAYARA-REPRODUCER: " + xmlHttp.status);
+            };
+            xmlHttp.onerror = () => {
+                console.log("PAYARA-REPRODUCER:ERROR! " + xmlHttp.status)
+            }
+            xmlHttp.open('GET', 'http://localhost:8080/api/v1/users/');
+            xmlHttp.setRequestHeader('Accept', 'application/json, text/plain, */*');
+            xmlHttp.setRequestHeader('Authorization', 'Bearer eyJraWQiOiJwYXlhcmEta2V5IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tIiwiYXVkIjoicGF5YXJhLmZpc2giLCJqdGkiOiI4ODBmNjNjMC1iY2E2LTQzYjUtOGU0MC0xZGMzODVmNmY0NDciLCJleHAiOjE2NTIyNjI2MDksImlhdCI6MTY1MjI2MjYwOSwic3ViIjoidGVzdHN1YmplY3QiLCJ1cG4iOiJ0ZXN0c3ViamVjdCIsImdyb3VwcyI6WyJBTExfVVNFUlMiXX0.oieh-WeBkPBlv_-NRKEiL2HEyv-jTwYofKlT72grMLdHMDg7xk8xe4uIMmuquf-c7dTcNIIr8IM8u1koP-VVxfrb7JZ8nraAz9XA_DzOSbhPC-XCCY94vkBG-yT-jN2IBbRfT4DCUUSXyBuvbSkACuDTVg_tsZSMtBuVT8vAXHuWThHfk7naFs1AMQD_7uID4oiyP4jqPEHZtQgc9YWSKIYzlR70TNsGwpr1V8_DZfy3XdDA_w8WJl2TuEsQR3flXJ6omZhSQWfCX39Q0bXXwCJwFXepTTLYJfjJcox1DTptqUOdoi3-eymmMiSsoHwuljCeDQqaQKF4f8UjNcef-Q');
+            xmlHttp.send(null);
+        }
+
+    </script>
+
+</body>
+</html>

@@ -20,7 +20,10 @@ class JWTTokenServiceTest {
         tokenService.encryptionService.init();
         tokenService.jwtIssuer = () -> "https://example.com";
 
-        final String jwt = tokenService.generateJWT("testsubject", Collections.singletonList("ALL_USERS"), System.currentTimeMillis() + 10000000);
+        final String jwt = tokenService
+                .generateJWT("testsubject",
+                        Collections.singletonList("ALL_USERS"),
+                        System.currentTimeMillis());
         System.out.println(jwt);
     }
 

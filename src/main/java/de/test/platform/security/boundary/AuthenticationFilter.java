@@ -34,7 +34,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     @PostConstruct
     private void init() {
-        excludePathList.add("/api/v1/users");
         excludePathList.add("/api/openapi-ui/index.html");
         excludePathList.add("/api/openapi-ui/style.css");
         excludePathList.add("/api/openapi-ui/logo.png");
@@ -111,7 +110,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             // IMPORTANT: check, if the Token is still attached to the user!!!
             String externalUserLoginId = jwtValidationResult.get().getSubject();
             try {
-                // users.getUserLogin(externalUserLoginId, token, LocaleThreadLocal.get());
                 System.out.println("Success... token belongs to user");
             } catch (Exception apiex) {
                 abortWithUnauthorized(requestContext);
